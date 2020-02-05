@@ -72,7 +72,24 @@ void main() async {
 
   var paymentStatus = await PicPayPaymentStatus.create(token, "1234");
 
+  // Return Payment Status Text
   print(paymentStatus.status);
+
+  // You can also check status using:
+
+  paymentStatus.isCreated;
+
+  paymentStatus.isExpired;
+
+  paymentStatus.isAnalysis;
+
+  paymentStatus.isPaid;
+
+  paymentStatus.isCompleted;
+
+  paymentStatus.isRefunded;
+
+  paymentStatus.isChargeback;
 
 }
 ```
