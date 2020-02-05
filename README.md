@@ -6,7 +6,7 @@ A [PicPay](https://picpay.com/) library for Dart developers based on [e-Commerce
 
 A simple usage example:
 
-### Create a PicPay Token
+### Create your PicPay Token
 
 [Create your PicPay Token](https://lojista.picpay.com/ecommerce-token) for your PicPay E-Commerce Account.
 
