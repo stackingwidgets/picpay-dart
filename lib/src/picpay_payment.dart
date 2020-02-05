@@ -1,5 +1,3 @@
-library picpay;
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -70,6 +68,22 @@ class PicPayPayment {
   Future<bool> makeRequest() async {
     try {
       var uri = Uri.https('appws.picpay.com', '/ecommerce/public/payments');
+
+      var requestBody = jsonEncode({
+        'referenceId': referenceId,
+        'callbackUrl': callbackUrl,
+        'value': value,
+        'expiresAt': expiresAt,
+        'returnUrl': returnUrl,
+        'buyer': {
+          'firstName': buyer.firstName,
+          'lastName': buyer.lastName,
+          'document': buyer.document,
+          'email': buyer.email,
+          'phone': buyer.phone,
+        },
+      });
+
       var response = await http.post(
         uri.toString(),
         headers: {
@@ -77,21 +91,14 @@ class PicPayPayment {
           'Content-type': 'application/json',
           'Accept': 'application/json',
         },
-        body: jsonEncode({
-          'referenceId': referenceId,
-          'callbackUrl': callbackUrl,
-          'value': value,
-          'expiresAt': expiresAt,
-          'returnUrl': returnUrl,
-          'buyer': {
-            'firstName': buyer.firstName,
-            'lastName': buyer.lastName,
-            'document': buyer.document,
-            'email': buyer.email,
-            'phone': buyer.phone,
-          },
-        }),
+        body: requestBody,
       );
+
+      print("Status: " + response.statusCode.toString());
+
+      print("Body: " + response.body.toString());
+
+      print("Data: " + requestBody.toString());
 
       this._requestCode = response.statusCode;
       this._isRequestSuccess = response.statusCode == 200 ? true : false;

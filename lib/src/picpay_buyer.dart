@@ -1,5 +1,3 @@
-library picpay;
-
 class PicPayBuyer {
   final String firstName;
   final String lastName;

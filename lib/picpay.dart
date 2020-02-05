@@ -3,4 +3,6 @@
 /// More dartdocs go here.
 library picpay;
 
-export 'src/picpay_api.dart';
+export 'src/picpay_api.dart' show PicPayApi;
+export 'src/picpay_buyer.dart' show PicPayBuyer;
+export 'src/picpay_payment.dart' show PicPayPayment;
