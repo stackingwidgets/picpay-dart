@@ -1,6 +1,4 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
+/// PicPay - E-Commerce Public API (1.0)
 library picpay;
 
 export 'src/picpay_buyer.dart' show PicPayBuyer;
