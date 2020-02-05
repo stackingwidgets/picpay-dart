@@ -51,7 +51,7 @@ void main() async {
     buyer,
   );
 
-  // Buyer Paymento URL
+  // Buyer Payment URL
   print(payment.paymentUrl);
 
   // Buyer Payment QRCode Content
