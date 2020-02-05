@@ -12,6 +12,27 @@ class PicPayPaymentStatus {
   /// Status do Pedido
   String status;
 
+  /// O Status atual é registro criado
+  bool get isCreated => status == 'created' ? true : false;
+
+  /// O Status atual é prazo para pagamento expirado
+  bool get isExpired => status == 'expired' ? true : false;
+
+  /// O Status atual é pago e em processo de análise anti-fraude
+  bool get isAnalysis => status == 'analysis' ? true : false;
+
+  /// O Status atual é pago
+  bool get isPaid => status == 'paid' ? true : false;
+
+  /// O Status atual é pago e saldo disponível
+  bool get isCompleted => status == 'completed' ? true : false;
+
+  /// O Status atual é pago e devolvido
+  bool get isRefunded => status == 'refunded' ? true : false;
+
+  /// O Status atual é pago e com chargeback
+  bool get isChargeback => status == 'chargeback' ? true : false;
+
   /// Utilize o endpoint abaixo para consultar o status de uma transação.
   PicPayPaymentStatus(this.token, this.referenceId);
 
