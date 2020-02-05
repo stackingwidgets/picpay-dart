@@ -1,11 +1,10 @@
 import 'package:picpay/picpay.dart';
 
 void main() async {
-  // Seu Token
-  var token = 'jui888fs-1399-4e53-mnuf880-ea9cdea919c5';
+  var token = '5b008f2367b2-1399-4e53-5b008c-5b008cef';
 
-  var buyer = PicPayBuyer(
-      "Luiz", "Eduardo", "123.345.678.99", "luizeof@gmail.com", "12 12345678");
+  var buyer = PicPayBuyer("Luiz", "Eduardo", "123.345.678.99",
+      "luizeof@gmail.com", "+551212345678");
 
   var payment = await PicPayPayment.create(
       token, "9999999", 'https://retorno.seusite.com.br', 10, buyer);
@@ -19,4 +18,8 @@ void main() async {
   var paymentStatus = await PicPayPaymentStatus.create(token, "1234");
 
   print(paymentStatus.status);
+
+  var paymentCancel = await PicPayCancelPayment.create(token, "1234");
+
+  print(paymentCancel.isRequestSuccess);
 }
