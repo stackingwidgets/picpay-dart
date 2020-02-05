@@ -16,7 +16,7 @@ void main() async {
   var token = '5b008f2367b2-1399-5b008cef';
 
   // Create a PicPay Buyer
-  var buyer = PicPayBuyer("Luiz", "Eduardo", "123.345.678.99",
+  var buyer = PicPayBuyer("Luiz", "Eduardo", "123.345.678-99",
       "luizeof@gmail.com", "+551212345678");
 
   // Create a Payment
