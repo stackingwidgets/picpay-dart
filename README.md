@@ -8,7 +8,7 @@ A simple usage example:
 
 ### Create your PicPay Token
 
-[Create your PicPay Token](https://lojista.picpay.com/ecommerce-token) for your PicPay E-Commerce Account.
+[Create your PicPay Token](https://lojista.picpay.com/ecommerce-token) on your PicPay E-Commerce Account.
 
 ```dart
   final String token = '5b008f2367b2-1399-5b008cef';
