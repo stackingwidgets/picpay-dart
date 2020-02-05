@@ -1,5 +1,5 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 /// Utilize o endpoint abaixo para consultar o status de uma transação.
 class PicPayPaymentStatus {
@@ -12,6 +12,7 @@ class PicPayPaymentStatus {
   /// Status do Pedido
   String status;
 
+  /// Utilize o endpoint abaixo para consultar o status de uma transação.
   PicPayPaymentStatus(this.token, this.referenceId);
 
   Future<bool> _makeRequest() async {
@@ -28,7 +29,7 @@ class PicPayPaymentStatus {
       );
 
       var data = jsonDecode(response.body.toString());
-      this.status = data['status'];
+      status = data['status'].toString();
       return response.statusCode == 200 ? true : false;
     } catch (e) {
       return false;

@@ -1,6 +1,7 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
+/// Utilize este endereço para solicitar o cancelamento/estorno de um pedido
 class PicPayCancelPayment {
   /// token gerado e fornecido pelo PicPay.
   final String token;
@@ -8,9 +9,12 @@ class PicPayCancelPayment {
   /// Identificador único do seu pedido ue será cancelado.
   final String referenceId;
 
-  /// ID da autorização que seu e-commerce recebeu na notificação de pedido pago. Caso o pedido não esteja pago, não é necessário enviar este parâmetro.
+  /// ID da autorização que seu e-commerce recebeu na notificação de
+  /// pedido pago. Caso o pedido não esteja pago, não é necessário
+  /// enviar este parâmetro.
   final String authorizationId;
 
+  /// Utilize este endereço para solicitar o cancelamento/estorno de um pedido
   PicPayCancelPayment(this.token, this.referenceId, this.authorizationId);
 
   Future<bool> _makeRequest() async {
@@ -38,6 +42,7 @@ class PicPayCancelPayment {
     }
   }
 
+  /// Utilize este endereço para solicitar o cancelamento/estorno de um pedido
   static Future<PicPayCancelPayment> create(
       String _token, String _referenceId, String _authorizationId) async {
     var data = PicPayCancelPayment(_token, _referenceId, _authorizationId);
