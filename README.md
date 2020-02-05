@@ -6,6 +6,20 @@ A [PicPay](https://picpay.com/) library for Dart developers based on [e-Commerce
 
 A simple usage example:
 
+### Create a Buyer
+
+```dart
+import 'package:picpay/picpay.dart';
+
+void main() async {
+
+  // Create a PicPay Buyer
+  var buyer = PicPayBuyer("Luiz", "Eduardo", "123.345.678-99",
+      "luizeof@gmail.com", "+551212345678");
+
+}
+```
+
 ### Create Payment
 
 ```dart
@@ -14,10 +28,6 @@ import 'package:picpay/picpay.dart';
 void main() async {
 
   var token = '5b008f2367b2-1399-5b008cef';
-
-  // Create a PicPay Buyer
-  var buyer = PicPayBuyer("Luiz", "Eduardo", "123.345.678-99",
-      "luizeof@gmail.com", "+551212345678");
 
   // Create a Payment
   var payment = await PicPayPayment.create(
