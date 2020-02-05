@@ -57,7 +57,7 @@ void main() async {
   // Buyer Payment QRCode Content
   print(payment.qrcodeContent);
 
-  // Buyer Payment QRCode Image Base64
+  // Buyer Payment QRCode Image encoded with Base64
   print(payment.qrcodeImage);
 
 }
