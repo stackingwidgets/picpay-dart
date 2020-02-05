@@ -35,6 +35,7 @@ class PicPayPaymentStatus {
     }
   }
 
+  /// Returna o objeto PicPayPaymentStatus
   static Future<PicPayPaymentStatus> create(
       String _token, String _status) async {
     var data = PicPayPaymentStatus(_token, _status);
