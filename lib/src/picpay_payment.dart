@@ -79,7 +79,7 @@ class PicPayPayment {
   });
 
   /// Envia a Requisição De Pagamento ao Picpay
-  Future<bool> _makeRequest() async {
+  Future<bool> makeRequest() async {
     try {
       var uri = Uri.https('appws.picpay.com', '/ecommerce/public/payments');
 
@@ -89,13 +89,7 @@ class PicPayPayment {
         'value': value,
         'expiresAt': expiresAt,
         'returnUrl': returnUrl,
-        'buyer': {
-          'firstName': buyer.firstName,
-          'lastName': buyer.lastName,
-          'document': buyer.document,
-          'email': buyer.email,
-          'phone': buyer.phone,
-        },
+        'buyer': buyer.toJson(),
       });
 
       var response = await http.post(
@@ -138,7 +132,7 @@ class PicPayPayment {
     String returnUrl,
   }) async {
     var data = PicPayPayment(token, referenceId, callbackUrl, value, buyer);
-    await data._makeRequest();
+    await data.makeRequest();
     return data;
   }
 }

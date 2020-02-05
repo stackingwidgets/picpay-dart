@@ -14,10 +14,22 @@ class PicPayCancelPayment {
   /// enviar este parâmetro.
   final String authorizationId;
 
-  /// Utilize este endereço para solicitar o cancelamento/estorno de um pedido
-  PicPayCancelPayment(this.token, this.referenceId, this.authorizationId);
+  /// Retorna se a requisição foi feita com sucesso
+  bool get isRequestSuccess => _isRequestSuccess;
 
-  Future<bool> _makeRequest() async {
+  /// Conteúdo do QR Code
+  String get requestErrorMessage =>
+      "code: $_requestCode , message: $_requestErrorMessage.";
+
+  bool _isRequestSuccess;
+  int _requestCode;
+  String _requestErrorMessage;
+
+  /// Utilize este endereço para solicitar o cancelamento/estorno de um pedido
+  PicPayCancelPayment(this.token, this.referenceId, [this.authorizationId]);
+
+  /// Envia a Requisição De Cancelamento ao Picpay
+  Future<bool> makeRequest() async {
     try {
       var uri = Uri.https('appws.picpay.com',
           '/ecommerce/public/payments/$referenceId/cancellations');
@@ -36,6 +48,11 @@ class PicPayCancelPayment {
         body: requestBody,
       );
 
+      _requestCode = response.statusCode;
+      _isRequestSuccess = response.statusCode == 200 ? true : false;
+      _requestErrorMessage =
+          _isRequestSuccess == true ? null : response.body.toString();
+
       return response.statusCode == 200 ? true : false;
     } on Exception catch (e) {
       print(e.toString());
@@ -44,10 +61,10 @@ class PicPayCancelPayment {
   }
 
   /// Utilize este endereço para solicitar o cancelamento/estorno de um pedido
-  static Future<PicPayCancelPayment> create(
-      String _token, String _referenceId, String _authorizationId) async {
+  static Future<PicPayCancelPayment> create(String _token, String _referenceId,
+      [String _authorizationId]) async {
     var data = PicPayCancelPayment(_token, _referenceId, _authorizationId);
-    await data._makeRequest();
+    await data.makeRequest();
     return data;
   }
 }

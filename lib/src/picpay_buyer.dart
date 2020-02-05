@@ -23,4 +23,15 @@ class PicPayBuyer {
     this.email,
     this.phone,
   );
+
+  /// Retorna o Json
+  dynamic toJson() {
+    return {
+      'firstName': firstName,
+      'lastName': lastName,
+      'document': document,
+      'email': email,
+      'phone': phone,
+    };
+  }
 }
