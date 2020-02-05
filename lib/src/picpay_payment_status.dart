@@ -31,7 +31,8 @@ class PicPayPaymentStatus {
       var data = jsonDecode(response.body.toString());
       status = data['status'].toString();
       return response.statusCode == 200 ? true : false;
-    } catch (e) {
+    } on Exception catch (e) {
+      print(e.toString());
       return false;
     }
   }

@@ -37,7 +37,8 @@ class PicPayCancelPayment {
       );
 
       return response.statusCode == 200 ? true : false;
-    } catch (e) {
+    } on Exception catch (e) {
+      print(e.toString());
       return false;
     }
   }
