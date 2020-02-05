@@ -70,6 +70,8 @@ import 'package:picpay/picpay.dart';
 
 void main() async {
 
+  var token = '5b008f2367b2-1399-5b008cef';
+
   var paymentStatus = await PicPayPaymentStatus.create(token, "1234");
 
   // Return Payment Status Text
