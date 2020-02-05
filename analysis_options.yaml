@@ -1,7 +1,7 @@
 include: package:effective_dart/analysis_options.yaml
 
 analyzer:
-  exclude: [build/**, text/**, example/**]
+  exclude: ["build/**", "text/**", "example/**"]
   strong-mode:
     implicit-casts: false
 
