@@ -13,10 +13,10 @@ class PicPayCancelPayment {
 
   PicPayCancelPayment(this.token, this.referenceId, this.authorizationId);
 
-  Future<bool> cancelPayment() async {
+  Future<bool> _makeRequest() async {
     try {
       var uri = Uri.https('appws.picpay.com',
-          '/ecommerce/public/payments/{$referenceId}/cancellations');
+          '/ecommerce/public/payments/$referenceId/cancellations');
 
       var requestBody = jsonEncode({
         'authorizationId': authorizationId,
@@ -36,5 +36,12 @@ class PicPayCancelPayment {
     } catch (e) {
       return false;
     }
+  }
+
+  static Future<PicPayCancelPayment> create(
+      String _token, String _referenceId, String _authorizationId) async {
+    var data = PicPayCancelPayment(_token, _referenceId, _authorizationId);
+    await data._makeRequest();
+    return data;
   }
 }
