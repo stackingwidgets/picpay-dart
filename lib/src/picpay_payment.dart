@@ -65,7 +65,7 @@ class PicPayPayment {
 
   /// Conteúdo do QR Code
   String get requestErrorMessage =>
-      "code: $_requestCode , message: $_requestErrorMessage.";
+      'code: $_requestCode , message: $_requestErrorMessage.';
 
   /// Requisição De Pagamento
   PicPayPayment(

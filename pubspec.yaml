@@ -1,6 +1,6 @@
 name: picpay
 description: PicPay E-Commerce API for Dart and Flutter for create Payments and check Payment status
-version: 1.0.2
+version: 1.1.0
 homepage: https://github.com/stackingwidgets/picpay-dart
 
 environment:
@@ -11,4 +11,4 @@ dependencies:
 
 dev_dependencies:
   pedantic: any
-  effective_dart: ^1.0.0
+  effective_dart: ^1.2.0

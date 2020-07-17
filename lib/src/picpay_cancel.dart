@@ -19,7 +19,7 @@ class PicPayCancelPayment {
 
   /// Conteúdo do QR Code
   String get requestErrorMessage =>
-      "code: $_requestCode , message: $_requestErrorMessage.";
+      'code: $_requestCode , message: $_requestErrorMessage.';
 
   bool _isRequestSuccess;
   int _requestCode;
