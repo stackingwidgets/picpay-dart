@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 /// Utilize o endpoint abaixo para consultar o status de uma transação.
@@ -10,7 +11,7 @@ class PicPayPaymentStatus {
   final String referenceId;
 
   /// Status do Pedido
-  String status;
+  String? status;
 
   /// O Status atual é registro criado
   bool get isCreated => status == 'created' ? true : false;
@@ -41,7 +42,7 @@ class PicPayPaymentStatus {
       var uri = Uri.https(
           'appws.picpay.com', '/ecommerce/public/payments/$referenceId/status');
       var response = await http.get(
-        uri.toString(),
+        uri,
         headers: {
           'x-picpay-token': token,
           'Content-type': 'application/json',
@@ -65,4 +66,8 @@ class PicPayPaymentStatus {
     await data._makeRequest();
     return data;
   }
+
+  @override
+  String toString() =>
+      'PicPayPaymentStatus(token: $token, referenceId: $referenceId, status: $status)';
 }

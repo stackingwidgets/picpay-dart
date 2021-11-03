@@ -31,34 +31,34 @@ class PicPayPayment {
   final String callbackUrl;
 
   /// Url para a qual o cliente será redirecionado após o pagamento.
-  final String returnUrl;
+  final String? returnUrl;
 
   /// Valor do pagamento em reais.
   final double value;
 
   /// Quando a ordem de pagamento irá expirar.
-  final DateTime expiresAt;
+  final DateTime? expiresAt;
 
   /// Informações do comprador.
   final PicPayBuyer buyer;
 
-  String _paymentUrl;
-  String _qrcodeImage;
-  String _qrcodeContent;
-  bool _isRequestSuccess;
-  int _requestCode;
-  String _requestErrorMessage;
+  String? _paymentUrl;
+  String? _qrcodeImage;
+  String? _qrcodeContent;
+  bool _isRequestSuccess = false;
+  int? _requestCode;
+  String? _requestErrorMessage;
 
   /// URL na qual sua loja deve redirecionar o cliente para conclusão
   /// do pagamento.
-  String get paymentUrl => _paymentUrl;
+  String get paymentUrl => _paymentUrl ?? '';
 
   /// Imagem do QR Code em formato base 64 (válido para exibir no
   /// frontend sem depender de plugins externos)
-  String get qrcodeImage => _qrcodeImage;
+  String get qrcodeImage => _qrcodeImage ?? '';
 
   /// Conteúdo do QR Code
-  String get qrcodeContent => _qrcodeContent;
+  String get qrcodeContent => _qrcodeContent ?? '';
 
   /// Retorna se a requisição foi feita com sucesso
   bool get isRequestSuccess => _isRequestSuccess;
@@ -93,7 +93,7 @@ class PicPayPayment {
       });
 
       var response = await http.post(
-        uri.toString(),
+        uri,
         headers: {
           'x-picpay-token': token,
           'Content-type': 'application/json',
@@ -128,8 +128,8 @@ class PicPayPayment {
     String callbackUrl,
     double value,
     PicPayBuyer buyer, {
-    DateTime expiresAt,
-    String returnUrl,
+    DateTime? expiresAt,
+    String? returnUrl,
   }) async {
     var data = PicPayPayment(token, referenceId, callbackUrl, value, buyer);
     await data.makeRequest();

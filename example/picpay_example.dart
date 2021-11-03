@@ -1,7 +1,8 @@
 import 'package:picpay/picpay.dart';
+import 'dart:math';
 
 void main() async {
-  var token = '5b008f2367b2-1399-4e53-5b008c-5b008cef';
+  var token = '5b008f2367b2-1399-5b008cef';
 
   var buyer = PicPayBuyer(
     "Luiz",
@@ -10,10 +11,10 @@ void main() async {
     "luizeof@gmail.com",
     "+551212345678",
   );
-
+  Random _rand = Random();
   var payment = await PicPayPayment.create(
     token,
-    "9999999",
+    _rand.nextInt(999999).toString(),
     'https://retorno.seusite.com.br',
     10,
     buyer,
@@ -25,11 +26,11 @@ void main() async {
 
   print(payment.qrcodeImage);
 
-  var paymentStatus = await PicPayPaymentStatus.create(token, "1234");
+  var paymentStatus = await PicPayPaymentStatus.create(token, payment.referenceId);
 
-  print(paymentStatus.status);
+  print((paymentStatus.toString()));
 
-  var paymentCancel = await PicPayCancelPayment.create(token, "1234");
+  var paymentCancel = await PicPayCancelPayment.create(token, payment.referenceId);
 
-  print(paymentCancel.isRequestSuccess);
+  print(paymentCancel);
 }
