@@ -1,4 +1,6 @@
 # Changelog
+## 1.1.2
+Convertido para null-safety
 
 ## 1.1.1
 

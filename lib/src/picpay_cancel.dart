@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 /// Utilize este endereço para solicitar o cancelamento/estorno de um pedido
@@ -12,18 +13,18 @@ class PicPayCancelPayment {
   /// ID da autorização que seu e-commerce recebeu na notificação de
   /// pedido pago. Caso o pedido não esteja pago, não é necessário
   /// enviar este parâmetro.
-  final String authorizationId;
+  final String? authorizationId;
 
   /// Retorna se a requisição foi feita com sucesso
   bool get isRequestSuccess => _isRequestSuccess;
 
   /// Conteúdo do QR Code
-  String get requestErrorMessage =>
-      'code: $_requestCode , message: $_requestErrorMessage.';
+  String get requestErrorMessage => '''
+code: $_requestCode , message: $_requestErrorMessage.''';
 
-  bool _isRequestSuccess;
-  int _requestCode;
-  String _requestErrorMessage;
+  bool _isRequestSuccess = false;
+  int? _requestCode;
+  String? _requestErrorMessage;
 
   /// Utilize este endereço para solicitar o cancelamento/estorno de um pedido
   PicPayCancelPayment(this.token, this.referenceId, [this.authorizationId]);
@@ -39,7 +40,7 @@ class PicPayCancelPayment {
       });
 
       var response = await http.post(
-        uri.toString(),
+        uri,
         headers: {
           'x-picpay-token': token,
           'Content-type': 'application/json',
@@ -62,9 +63,14 @@ class PicPayCancelPayment {
 
   /// Utilize este endereço para solicitar o cancelamento/estorno de um pedido
   static Future<PicPayCancelPayment> create(String _token, String _referenceId,
-      [String _authorizationId]) async {
+      [String? _authorizationId]) async {
     var data = PicPayCancelPayment(_token, _referenceId, _authorizationId);
     await data.makeRequest();
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'PicPayCancelPayment(token: $token, referenceId: $referenceId, authorizationId: $authorizationId, _requestErrorMessage: $_requestErrorMessage, _isRequestSuccess: $_isRequestSuccess, _requestCode: $_requestCode, _requestErrorMessage: $_requestErrorMessage)';
   }
 }
