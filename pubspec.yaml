@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  http: ^0.12.2
+  http: ^0.13.4
 
 dev_dependencies:
   pedantic: any
